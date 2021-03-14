@@ -1,0 +1,67 @@
+2021-03-13 12:31:40 INFO  ConnectionUtil:44 - connection successful
+2021-03-13 12:31:40 INFO  ConnectionUtil:53 - connected to db
+2021-03-13 12:31:40 WARN  EmployeeDAOImpl:41 - Unable to insert user
+org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "employee_e_mail_key"
+  Detail: Key (e_mail)=(1234) already exists.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2505)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2241)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:447)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:368)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:158)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:147)
+	at com.revature.repositories.EmployeeDAOImpl.insert(EmployeeDAOImpl.java:36)
+	at com.revature.Driver.main(Driver.java:13)
+2021-03-13 12:33:53 INFO  ConnectionUtil:44 - connection successful
+2021-03-13 12:33:53 INFO  ConnectionUtil:53 - connected to db
+2021-03-13 12:34:20 INFO  ConnectionUtil:44 - connection successful
+2021-03-13 12:34:20 INFO  ConnectionUtil:53 - connected to db
+2021-03-13 12:36:46 INFO  ConnectionUtil:44 - connection successful
+2021-03-13 12:36:46 INFO  ConnectionUtil:53 - connected to db
+2021-03-13 12:36:46 WARN  EmployeeDAOImpl:39 - Unable to insert expense
+org.postgresql.util.PSQLException: No value specified for parameter 6.
+	at org.postgresql.core.v3.SimpleParameterList.checkAllParametersSet(SimpleParameterList.java:264)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:294)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:447)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:368)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:158)
+	at org.postgresql.jdbc.PgPreparedStatement.execute(PgPreparedStatement.java:147)
+	at com.revature.repositories.ExpenseDAOImpl.insert(ExpenseDAOImpl.java:34)
+	at com.revature.Driver.main(Driver.java:18)
+2021-03-13 12:38:29 INFO  ConnectionUtil:44 - connection successful
+2021-03-13 12:38:29 INFO  ConnectionUtil:53 - connected to db
+2021-03-14 04:57:19 INFO  ConnectionUtil:44 - connection successful
+2021-03-14 04:57:19 INFO  ConnectionUtil:53 - connected to db
+2021-03-14 04:57:19 INFO  EmployeeDAOImpl:63 - Employee updated: Employee [id=0, firstName=Gus, lastName=Guerra, email=1234, password=gg@mail.com, role=employee]
+2021-03-14 04:57:19 WARN  EmployeeDAOImpl:68 - org.postgresql.util.PSQLException: No value specified for parameter 6.
+2021-03-14 04:59:22 INFO  ConnectionUtil:44 - connection successful
+2021-03-14 04:59:22 INFO  ConnectionUtil:53 - connected to db
+2021-03-14 04:59:22 INFO  EmployeeDAOImpl:64 - Employee updated: Employee [id=0, firstName=Gus, lastName=Guerra, email=1234, password=gg@mail.com, role=employee]
+2021-03-14 05:01:23 INFO  ConnectionUtil:44 - connection successful
+2021-03-14 05:01:23 INFO  ConnectionUtil:53 - connected to db
+2021-03-14 05:01:23 INFO  EmployeeDAOImpl:64 - Employee updated: Employee [id=0, firstName=Gus, lastName=Guerra, email=1234, password=gg@mail.com, role=admin]
+2021-03-14 05:09:10 INFO  ConnectionUtil:44 - connection successful
+2021-03-14 05:09:10 INFO  ConnectionUtil:53 - connected to db
+2021-03-14 05:09:51 INFO  ConnectionUtil:44 - connection successful
+2021-03-14 05:09:51 INFO  ConnectionUtil:53 - connected to db
+2021-03-14 05:09:51 INFO  EmployeeDAOImpl:64 - Employee updated: Employee [id=0, firstName=aa, lastName=bb, email=1234, password=ab@mail.com, role=employee]
+2021-03-14 05:22:20 INFO  ConnectionUtil:44 - connection successful
+2021-03-14 05:22:20 INFO  ConnectionUtil:53 - connected to db
+2021-03-14 05:22:20 INFO  EmployeeDAOImpl:64 - Employee updated: Employee [id=0, firstName=aa, lastName=bb, email=1234, password=ab@mail.com, role=employee]
+2021-03-14 05:24:42 INFO  ConnectionUtil:44 - connection successful
+2021-03-14 05:24:42 INFO  ConnectionUtil:53 - connected to db
+2021-03-14 05:24:42 INFO  EmployeeDAOImpl:64 - Employee updated: Employee [id=0, firstName=aa, lastName=bb, email=ab@mail.com, password=1234, role=employee]
+2021-03-14 05:28:23 INFO  ConnectionUtil:44 - connection successful
+2021-03-14 05:28:23 INFO  ConnectionUtil:53 - connected to db
+2021-03-14 05:28:23 INFO  EmployeeDAOImpl:64 - Employee updated: Employee [id=15, firstName=aa, lastName=bb, email=ab@mail.com, password=1234, role=employee]
+2021-03-14 05:31:07 INFO  ConnectionUtil:44 - connection successful
+2021-03-14 05:31:07 INFO  ConnectionUtil:53 - connected to db
+2021-03-14 05:41:26 INFO  ConnectionUtil:44 - connection successful
+2021-03-14 05:41:26 INFO  ConnectionUtil:53 - connected to db
+2021-03-14 05:41:26 INFO  EmployeeDAOImpl:64 - Expense updated: Expense [id=1, userId=1, expenseAmmount=20.0, expenseDescription=carro, expenseStatus=approved, reviewedBy=Rodrigo]
+2021-03-14 05:50:33 INFO  ConnectionUtil:44 - connection successful
+2021-03-14 05:50:33 INFO  ConnectionUtil:53 - connected to db
+2021-03-14 05:51:45 INFO  ConnectionUtil:44 - connection successful
+2021-03-14 05:51:45 INFO  ConnectionUtil:53 - connected to db
+2021-03-14 05:51:45 INFO  ConnectionUtil:44 - connection successful
+2021-03-14 05:51:45 INFO  ConnectionUtil:53 - connected to db

@@ -5,8 +5,9 @@ public class Employee {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private String username;
+	private String email;
 	private String password;
+	private String role;
 	
 	
 	public Employee() {
@@ -14,24 +15,23 @@ public class Employee {
 	}
 
 
-	public Employee(int id, String firstName, String lastName, String username, String password) {
+	public Employee(int id, String firstName, String lastName, String email, String password, String role ) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.username = username;
+		this.email = email;
 		this.password = password;
+		this.role = role;
 	}
 	
-	// also possible to create an employee with id set to 0 and will not cause problems.
-
-	// the DB creates the ID for them.
-	public Employee(String firstName, String lastName, String username, String password) {
+	public Employee(String firstName, String lastName,  String email, String password, String role) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.username = username;
+		this.email = email;
 		this.password = password;
+		this.role = role;
 	}
 	
 
@@ -65,13 +65,13 @@ public class Employee {
 	}
 
 
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return email;
 	}
 
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 
@@ -84,11 +84,25 @@ public class Employee {
 		this.password = password;
 	}
 
+	
+
+	public String getRole() {
+		return role;
+	}
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
+	
+
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", password=" + password + "]";
+		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", role=" + role + "]";
 	}
 
 
@@ -96,11 +110,12 @@ public class Employee {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		return result;
 	}
 
@@ -114,6 +129,11 @@ public class Employee {
 		if (getClass() != obj.getClass())
 			return false;
 		Employee other = (Employee) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
@@ -131,12 +151,15 @@ public class Employee {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (username == null) {
-			if (other.username != null)
+		if (role == null) {
+			if (other.role != null)
 				return false;
-		} else if (!username.equals(other.username))
+		} else if (!role.equals(other.role))
 			return false;
 		return true;
 	}
+
+
+	
 	
 }

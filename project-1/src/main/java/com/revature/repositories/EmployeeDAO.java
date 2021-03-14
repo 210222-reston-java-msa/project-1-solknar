@@ -11,7 +11,7 @@ import com.revature.models.Employee;
 public interface EmployeeDAO {
 	// DAO is for CRUD methods 
 	public boolean insert(Employee e); // returns true if successfully inserted	
-	public boolean update(Employee e);
+	public int update(Employee e);
 	
 	public List<Employee> findAll(); // this will return ALL employee objects from the DB
 	// we will use this in our service layer and filter it to return JUST one employee that matches

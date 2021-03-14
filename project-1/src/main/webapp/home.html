@@ -13,50 +13,134 @@
 	<div class="jumbotron">
 		<h1 id="welcome">You are Logged in!</h1>
 		
+        
 		<a class="btn btn success" onclick="logout()">Logout</a>
 		
 	</div>
 	
+	<div >
+		<div id="employeeMenu">
+			<div class="btn-group-vertical" >
+			<button type="button" class="btn btn-secondary">Create an expense report</button>
+			<button type="button" class="btn btn-secondary">View your expense reports</button>
+			<button type="button" class="btn btn-secondary">View your information</button>
+			</div>
+		</div>
+		
+		<hr>
+		<div id="managerMenu">
+			<div class="btn-group-vertical">
+				<button type="button" class="btn btn-secondary" id="viewEmployees">View all employees</button>
+				<button type="button" class="btn btn-secondary" id="test">Test control button</button>
+			</div>
+			<div>
+				<table id="myTable">
+					<tr>
+						<thead>
+							<th width="100">
+								First Name
+							</th>
+							<th width="100">
+								Last Name
+							</th>
+							<th width="100">
+								Email
+							</th>
+						</thead>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+
+	</div>
+
 	<script>
 		
-	// capture the welcome element and modofy it so that it says welcome + username
-	let welcome = document.getElementById('welcome');
-	
-	// capture the userString by accessing the session.....
-	let userString = sessionStorage.getItem('currentUser');
-	
-	// set up some logic....
-	// IF the user is null....redirect them to the index.html page ("http://localhost:8080/EmployeeDBServlets/")
-	if (userString === null) {
-		window.location = "http://localhost:8080/project-1/";
-	} else {
+		// capture the welcome element and modify it so that it says welcome + username
+		let welcome = document.getElementById('welcome');
+		let tlist = document.getElementById('tickets-list');
 		
-		let currentUser = JSON.parse(userString); // parse the data that we se == to that attribute
+		// capture the userString by accessing the session.....
+		let userString = sessionStorage.getItem('currentUser');
 		
-		console.log(currentUser);
-		
-		if (currentUser != null) {
+		// set up some logic....
+		// IF the user is null....redirect them to the index.html page ("http://localhost:8080/EmployeeDBServlets/")
+		if (userString === null) {
+			window.location = "http://localhost:8080/project-1/";
+		} else {
 			
-			welcome.innerHTML = "Welcome " + currentUser.firstName + " " + currentUser.lastName;
+			let currentUser = JSON.parse(userString); // parse the data that we se == to that attribute
+			
+			console.log(currentUser);
+			
+			if (currentUser != null) {
+				
+				welcome.innerHTML = "Welcome " + currentUser.firstName + " " + currentUser.lastName;
+				
+			}
 			
 		}
-		
-	}
 
-	
-	function logout() {
 		
-		let xhr = new XMLHttpRequest();
-		
-		xhr.open("POST", "http://localhost:8080/project-1/logout");
-		xhr.send();
-		
-		sessionStorage.removeItem('currentUser');
-		window.location = "http://localhost:8080/project-1/";
-		
-	}
+		function logout() {
+			
+			let xhr = new XMLHttpRequest();
+			
+			xhr.open("POST", "http://localhost:8080/project-1/logout");
+			xhr.send();
+			
+			sessionStorage.removeItem('currentUser');
+			window.location = "http://localhost:8080/project-1/";
+			
+		}
 
+		
+			
+			
+		
+		var btn = document.getElementById("viewEmployees");
+
+		btn.addEventListener("click", function(){
+			let xhr = new XMLHttpRequest();
+			
+			xhr.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					var myArr = JSON.parse(this.responseText);
+					console.log(myArr[0]);
+					populateTable(myArr);
+				}
+			}
+			xhr.open("POST", "http://localhost:8080/project-1/employees");
+			xhr.send();
+		});
+
+
+		function populateTable(someArray) {
+			console.log("Hit the populateTable function");
+			var table = document.getElementById("myTable");
+
+			someArray.forEach( (obj) => {
+
+				// 1. for each object create a new row (<tr>) and stick it onto (append) the table that exists
+				let tr = document.createElement("tr");
+				table.appendChild(tr);
+
+				// 2. for each obj enter some data (<td>)
+				let td = document.createElement("td");
+				// - firstName <td>
+				tr.appendChild(td);
+				td.innerHTML = obj.firstName;
+				// - color <td>;
+				td = document.createElement("td");
+				tr.appendChild(td);
+				td.innerHTML = obj.lastName;
+				// - cheese <td>;
+				td = document.createElement("td");
+				tr.appendChild(td);
+				td.innerHTML = obj.email;
+			});
+		}
 	</script>
-	
 </body>
 </html>

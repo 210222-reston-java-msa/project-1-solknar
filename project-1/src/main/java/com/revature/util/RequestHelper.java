@@ -23,7 +23,7 @@ public class RequestHelper {
 	
 	public static void processLogin(HttpServletRequest req, HttpServletResponse res) throws IOException { 
 		
-		// We want to turn whatever we recieve as the request into a string to process
+		// We want to turn whatever we receive as the request into a string to process
 		BufferedReader reader = req.getReader();
 		StringBuilder s = new StringBuilder();
 		
@@ -38,7 +38,7 @@ public class RequestHelper {
 		log.info(body);
 		
 		
-		// I'm going to build a model called LoginTemplate which holds a username and passwrod
+		// I'm going to build a model called LoginTemplate which holds a username and password
 		LoginTemplate loginAttempt = om.readValue(body, LoginTemplate.class); // from JSON --> Java Object
 
 		

@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// we will have an index.html with a fomr sectoin/login section and upon clicking th button
+		// we will have an index.html with a form section/login section and upon clicking the button
 		// it will send a POST request to THIS servlet....
 		
 		// 1. We handle the parameters from the index

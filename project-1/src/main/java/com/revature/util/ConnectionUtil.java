@@ -43,14 +43,13 @@ public class ConnectionUtil {
 				conn = DriverManager.getConnection(url, username, password);
 				log.info("connection successful");
 			} catch (SQLException e) {
-				log.warn("unable to obtain a connection to the database");
+				//log.warn("unable to obtain a connection to the database");
 			}
 			
 			
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-		
 		log.info("connected to db");
 		return conn;
 	}

@@ -16,7 +16,7 @@ public class EmployeeService {
 		return eDao.insert(e);
 	}
 	
-	public static boolean update(Employee e) {
+	public static int update(Employee e) {
 		
 		return eDao.update(e);
 	}
@@ -25,14 +25,14 @@ public class EmployeeService {
 		return eDao.findAll();
 	}
 	
-	// find by username...
-	public static Employee findByUsername(String username) {
+	// find by Email...
+	public static Employee findByEmail(String email) {
 		List<Employee> all = eDao.findAll();
 		//List<Employee> all = findAll(); // another way to do it
 		
 		for (Employee e : all) { // filtering with an enhanced for-loop!
-			if (e.getUsername().equals(username)) {
-				return e; // we return the Employee object with a matching ID
+			if (e.getEmail().equals(email)) {
+				return e; // we return the Employee object with a matching email
 			}
 		}
 		
@@ -40,10 +40,10 @@ public class EmployeeService {
 	}
 	
 	// confirm login method
-	public static Employee confirmLogin(String username, String password) {
+	public static Employee confirmLogin(String email, String password) {
 		
 		// we use the above method
-		Employee e = findByUsername(username);
+		Employee e = findByEmail(email);
 		
 		if (e == null) {
 			return null;
