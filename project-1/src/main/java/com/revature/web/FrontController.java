@@ -8,15 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.util.RequestHelper;
 
-/**
- * Servlet implementation class FrontController
- */
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// we will rewrite the URL's 
 		final String URI = request.getRequestURI().replace("/project-1/", "");
 		
 		switch(URI) {
@@ -28,6 +24,12 @@ public class FrontController extends HttpServlet {
 			break;
 		case "employees":
 			RequestHelper.processEmployees(request, response);
+			break;
+		case "expense":
+			RequestHelper.processExpense(request, response);
+			break;
+		case "tickets":
+			RequestHelper.processTickets(request, response);
 			break;
 		} 
 		

@@ -42,7 +42,6 @@ public class ExpenseDAOImpl implements ExpenseDAO{
 			log.warn("Unable to insert expense", exc);
 			return false;
 		}
-		// If everything is successful, we return true
 		return true;
 	
 	}

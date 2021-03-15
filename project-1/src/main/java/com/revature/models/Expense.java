@@ -31,7 +31,7 @@ public class Expense {
 		this.expenseStatus = expenseStatus;
 		this.reviewedBy = reviewed;
 	}
-
+	
 	public int getId() {
 		return id;
 	}

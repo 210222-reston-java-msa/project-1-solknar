@@ -13,8 +13,12 @@ import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Employee;
+import com.revature.models.Expense;
 import com.revature.models.LoginTemplate;
+import com.revature.repositories.ExpenseDAO;
+import com.revature.repositories.ExpenseDAOImpl;
 import com.revature.services.EmployeeService;
+import com.revature.services.ExpenseServices;
 
 public class RequestHelper {
 	
@@ -91,27 +95,72 @@ public class RequestHelper {
 	
 	}
 	
-	// This method's purpose is to return all Employees from the DB in JSON form 
 	public static void processEmployees(HttpServletRequest req, HttpServletResponse res) throws IOException {
 	
 		
-		// 1. Set the content type to app/json because we will be sending json data back to the client, 
-		// stuck alongside the response
 		log.info(EmployeeService.findAll());
 		res.setContentType("application/json");
 		
-		// 2. Get a list of all Employees in the DB
 		List<Employee> allEmps = EmployeeService.findAll();
 		
-		// 3. Turn the list of Java Objs into a JSON string
 		String json = om.writeValueAsString(allEmps);
 		
-		// 4. Use getWriter() from the response object to return the json string
 		PrintWriter pw = res.getWriter();
 		pw.println(json);
 		
 		
 	}	
+	
+public static void processTickets(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	
+		
+		log.info(ExpenseServices.findAll());
+		res.setContentType("application/json");
+		
+		List<Expense> allExps = ExpenseServices.findAll();
+		
+		String json = om.writeValueAsString(allExps);
+		
+		PrintWriter pw = res.getWriter();
+		pw.println(json);
+		
+		
+	}	
+	
+	
+	public static void processExpense(HttpServletRequest req, HttpServletResponse res) throws IOException {
+				BufferedReader reader = req.getReader();
+				StringBuilder s = new StringBuilder();
+				
+				String line = reader.readLine();
+				while (line != null) {
+					s.append(line);
+					line = reader.readLine();
+				}
+				
+				String body = s.toString();
+				log.info(body);
+				
+				
+				Expense expenseToAdd = om.readValue(body, Expense.class); 
+				expenseToAdd.setExpenseStatus("pending");
+				expenseToAdd.setReviewedBy("tba");
+								
+				log.info("User added expense " + expenseToAdd);
+				
+				if(expenseToAdd != null) {
+					ExpenseDAO exDao = new ExpenseDAOImpl();
+					
+					if (exDao.insert(expenseToAdd)) {
+						res.setStatus(200);
+					}else {
+						res.setStatus(204);
+					}
+				}
+				
+				
+				;
+	}
 	
 	public static void main(String[] args) {
 		log.info(EmployeeService.findAll());
